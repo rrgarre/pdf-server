@@ -12,7 +12,10 @@ document.addEventListener('DOMContentLoaded', () => {
           pdfList.innerHTML = '';
           pdfFiles.forEach(pdfFile => {
               const li = document.createElement('li');
-              li.textContent = pdfFile;
+              // li.textContent = pdfFile;
+              const linea = document.createElement('span');
+              linea.textContent = decodeURIComponent(pdfFile)
+              // linea.textContent = pdfFile;
 
               const viewButton = document.createElement('button');
               viewButton.classList.add("button-view")
@@ -42,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   }
               };
 
+              li.appendChild(linea)
               li.appendChild(viewButton);
               li.appendChild(deleteButton);
               pdfList.appendChild(li);
