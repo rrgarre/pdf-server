@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Documentos PDF</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Gestión de Documentos PDF</h1>
+    <section>
+        <h2>Subir PDF</h2>
+        <form id="uploadForm">
+            <input type="file" id="fileInput" name="pdf" accept=".pdf" required>
+            <button type="submit">Subir</button>
+        </form>
+        <div id="dropZone" class="drop-zone">
+            Arrastra y suelta tu archivo PDF aquí
+        </div>
+    </section>
+    <section>
+        <h2>Documentos PDF</h2>
+        <ul id="pdfList"></ul>
+    </section>
+    <script src="app.js"></script>
+</body>
+</html>

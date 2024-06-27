@@ -3,6 +3,7 @@ const funcionesRouter = require('express').Router()
 const fs = require('fs-extra')
 const path = require('path')
 const multer = require('multer')
+const pdf = require('pdf-parse')
 
 const upload = multer({ dest: 'uploads/' })
 // const { isModuleNamespaceObject } = require('util/types')
@@ -38,12 +39,11 @@ funcionesRouter.post('/subir', upload.single('pdf'), async (req, res) => {
 // Endpoint dinámico para leer el contenido de un PDF
 funcionesRouter.get('/documentos/:nombrePDF', async (req, res) => {
   const { nombrePDF } = req.params
-  console.log('nombrePdf: ', nombrePDF)
   const filePath = path.join(__dirname, '..', 'pdfs', nombrePDF)
-  console.log('filePath: ', filePath)
   try {
     const dataBuffer = await fs.readFile(filePath)
     const data = await pdf(dataBuffer)
+    console.log('data: ', data)
     res.send(data.text)
   } catch (error) {
     console.error(error)

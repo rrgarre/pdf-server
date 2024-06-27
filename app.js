@@ -8,14 +8,9 @@ const express = require('express')
 const app = express()
 ///////////////////////////////////////////////////
 
-// const mongoose = require('mongoose')
-// const { Sequelize, DataTypes } = require('sequelize')
+// Servir archivos estáticos desde la carpeta 'public'
+app.use(express.static('public'))
 
-// Importamos los controladores
-// const loginRouter = require('./controllers/login')
-// const notesRouter = require('./controllers/notes')
-// const usersRouter = require('./controllers/users')
-// const farmaciasRouter = require('./controllers/farmacias')
 const funcionesRouter = require('./controllers/funciones')
 
 const logger = require('./utils/logger')
@@ -26,32 +21,6 @@ const cors = require('cors')
 const cleanerConsole = require('./middlewares/cleanerConsole')
 const unknowEndpoint = require('./middlewares/unknowEndpoint')
 const errorHandler = require('./middlewares/errorHandler')
-
-
-// const rutinasRouter = require('./controllers/rutinas')
-
-
-// Conectamos la base de datos MONGODB
-// logger.info(`connecting to ${config.MONGODB_URI}`)
-// mongoose.connect(config.MONGODB_URI)
-//   .then(result=>{
-//     console.log('Conexión establecida')
-//   })
-//   .catch((error)=>{
-//     console.log('No se ha podido conectar con la base de datos', error.message)
-//   })
-
-// Conectamos Base de Datos SQL.
-// const sequelize = require('./database')
-// sequelize.authenticate()
-//   .then(msg => console.log('Conexion OK'))
-//   .catch(err => console.log('Conexion ERROR'))
-// sequelize.sync()
-//   .then(msg => console.log('Sync DDBB OK'))
-//   .catch(err => console.log('Sync DDBB ERROR'))
-
-
-
 
 // MIDDLEWARES
 // app.use(express.static('build'))
@@ -65,13 +34,8 @@ morgan.token('bodyRequest', (request, response)=>{
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :bodyRequest'))
 
 // Enrutadores
-// app.use('/api/login', loginRouter)
-// app.use('/api/notes', notesRouter)
-// app.use('/api/users', usersRouter)
-// app.use('/api/farmacias', farmaciasRouter)
 app.use('/api/funciones', funcionesRouter)
-// Paramos este endpoint para Desarrollo, para evitar refrescos de BBDD de momento
-// app.use('/api/rutinas', rutinasRouter)
+
 
 // Control de errores
 app.use(unknowEndpoint)
