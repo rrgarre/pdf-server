@@ -4,9 +4,23 @@ const fs = require('fs-extra')
 const path = require('path')
 const multer = require('multer')
 const pdf = require('pdf-parse')
+const sanitize = require('sanitize-filename')
 
-const upload = multer({ dest: 'uploads/' })
-// const { isModuleNamespaceObject } = require('util/types')
+// Configurar multer
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+      cb(null, 'uploads');
+  },
+  filename: (req, file, cb) => {
+      // Sanitize the filename to ensure it is safe for the filesystem
+      const originalFilename = Buffer.from(file.originalname, 'latin1').toString('utf8');
+      const sanitizedFilename = sanitize(originalFilename);
+      cb(null, sanitizedFilename);
+  }
+});
+const upload = multer({ storage });
+// const upload = multer({ dest: 'uploads/' })
+
 
 // Ruta para servir archivos estáticos (PDFs)
 funcionesRouter.use('/documentos', express.static(path.join(__dirname, 'pdfs')))
@@ -26,10 +40,28 @@ funcionesRouter.get('/listar', async (req, res) => {
 // Endpoint para subir un PDF
 funcionesRouter.post('/subir', upload.single('pdf'), async (req, res) => {
   try {
+    // const tempFilePath = req.file.path
+    // const targetPath = path.join(__dirname, '..', 'pdfs', req.file.originalname)
+
+    // const tempFilePath = req.file.path
+    // console.log('tempFilePath: ', tempFilePath)
+    // console.log('req.file.originalname: ', req.file.originalname)
+    // const sanitizedFilename = sanitize(req.file.originalname)
+    // console.log('sanitized: ', sanitizedFilename)
+    // const normalized = req.file.originalname.normalize('NFC')
+    // console.log('normalized: ', normalized)
+    // const targetPath = path.join(__dirname, '..', 'pdfs', sanitizedFilename)
+    // console.log('targetPath: ', targetPath)
+
     const tempFilePath = req.file.path
-    const targetPath = path.join(__dirname, '..', 'pdfs', req.file.originalname)
+    // console.log('tempFilePath: ', tempFilePath)
+    // console.log('req.file.originalname: ', req.file.originalname)
+    const fileName = req.file.filename
+    const targetPath = path.join(__dirname, '..', 'pdfs', fileName)
+    // console.log('targetPath: ', targetPath)
+
     await fs.move(tempFilePath, targetPath, { overwrite: true })
-    res.send(`PDF ${req.file.originalname} subido correctamente`)
+    res.send(`PDF ${tempFilePath} subido correctamente`)
   } catch (error) {
     console.error(error)
     res.status(500).send('Error al subir el archivo PDF')

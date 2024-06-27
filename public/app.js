@@ -15,7 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
               li.textContent = pdfFile;
 
               const viewButton = document.createElement('button');
-              viewButton.textContent = 'Ver';
+              viewButton.classList.add("button-view")
+              // viewButton.textContent = 'Ver';
+              viewButton.innerHTML = '<span class="material-symbols-outlined">visibility</span>';
               viewButton.onclick = async () => {
                 window.open(`/api/funciones/documentos/${pdfFile}`, '_blank');
                 // const response = await fetch(`/api/funciones/documentos/${pdfFile}`);
@@ -24,7 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
               };
 
               const deleteButton = document.createElement('button');
+              deleteButton.classList.add("button-delete")
               deleteButton.textContent = 'Borrar';
+              deleteButton.innerHTML = '<span class="material-symbols-outlined">delete</span>';
               deleteButton.onclick = async () => {
                   if (confirm(`¿Estás seguro de que deseas eliminar el archivo ${pdfFile}?`)) {
                       const response = await fetch(`/api/funciones/borrar/${pdfFile}`, {

@@ -4,22 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Documentos PDF</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Gestión de Documentos PDF</h1>
+    <div class="cabecera">
+      <div class="logo">
+        <img src="https://www.primalumcanales.com/wp-content/uploads/2020/11/Logo-Primalum.png">
+      </div>
+      <h1>Gestión de Documentos PDF | PRIMALUM</h1>
+    </div>
     <section>
-        <h2>Subir PDF</h2>
-        <form id="uploadForm">
+      <h2>Subir PDF</h2>
+      <div class="file-upload">
+        <div id="dropZone" class="drop-zone">
+          <form id="uploadForm">
             <input type="file" id="fileInput" name="pdf" accept=".pdf" required>
             <button type="submit">Subir</button>
-        </form>
-        <div id="dropZone" class="drop-zone">
+          </form>
+          <p class="drag-text">
             Arrastra y suelta tu archivo PDF aquí
+          </p>
         </div>
+      </div>
     </section>
     <section>
-        <h2>Documentos PDF</h2>
+        <h2>Documentos PDF subidos</h2>
         <ul id="pdfList"></ul>
     </section>
     <script src="app.js"></script>
