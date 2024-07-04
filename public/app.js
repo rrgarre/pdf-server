@@ -13,7 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
           pdfFiles.forEach(pdfFile => {
               const li = document.createElement('li');
               // li.textContent = pdfFile;
-              const linea = document.createElement('span');
+              const linea = document.createElement('span')
+              linea.classList.add('file-name')
               linea.textContent = decodeURIComponent(pdfFile)
               // linea.textContent = pdfFile;
 
