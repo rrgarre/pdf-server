@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const copyLinksButton = document.getElementById('copyLinksButton');
   copyLinksButton.addEventListener('click', async () => {
       try {
-          const response = await fetch('http://localhost:3007/api/funciones/listarurlsarray');
+          const response = await fetch('/api/funciones/listarurlsarray');
           if (!response.ok) {
               throw new Error('Error al obtener los links');
           }
