@@ -104,6 +104,32 @@ document.addEventListener('DOMContentLoaded', () => {
       }
   });
 
+  // Codigo para copiar en portapapeles las urls
+  const copyLinksButton = document.getElementById('copyLinksButton');
+  copyLinksButton.addEventListener('click', async () => {
+      try {
+          const response = await fetch('http://localhost:3007/api/funciones/listarurlsarray');
+          if (!response.ok) {
+              throw new Error('Error al obtener los links');
+          }
+          const links = await response.json();
+          const linksText = links.join('\n'); // Opcional: puedes ajustar el separador según cómo los devuelvas
+          // Copiar al portapapeles
+          navigator.clipboard.writeText(linksText)
+              .then(() => {
+                  // alert('Links copiados al portapapeles');
+              })
+              .catch((error) => {
+                  console.error('Error al copiar al portapapeles:', error);
+                  alert('Error al copiar los links al portapapeles');
+              });
+      } catch (error) {
+          console.error('Error:', error);
+          alert('Error al obtener los links');
+      }
+  });
+
+
   // Listar PDFs al cargar la página
   listPDFs();
 });
