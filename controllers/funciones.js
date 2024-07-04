@@ -36,6 +36,19 @@ funcionesRouter.get('/listar', async (req, res) => {
     res.status(500).send('Error al listar archivos PDF')
   }
 })
+// Para listar urls
+funcionesRouter.get('/listarurls', async (req, res) => {
+  try {
+    const files = await fs.readdir('pdfs')
+    const pdfFiles = files.filter(file => path.extname(file).toLowerCase() === '.pdf')
+    const pdfFilesUrls = pdfFiles.map(file => 'http://35.180.142.222:3007/api/funciones/documentos/' + file)
+    // res.json(pdfFilesUrls)
+    res.send(pdfFilesUrls.join("<br>"))
+  } catch (error) {
+    console.error(error)
+    res.status(500).send('Error al listar archivos PDF')
+  }
+})
 
 // Endpoint para subir un PDF
 funcionesRouter.post('/subir', upload.single('pdf'), async (req, res) => {
