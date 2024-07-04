@@ -108,24 +108,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const copyLinksButton = document.getElementById('copyLinksButton');
   copyLinksButton.addEventListener('click', async () => {
       try {
-          const response = await fetch('/api/funciones/listarurlsarray');
-          if (!response.ok) {
-              throw new Error('Error al obtener los links');
-          }
-          const links = await response.json();
-          const linksText = links.join('\n'); // Opcional: puedes ajustar el separador según cómo los devuelvas
-          // Copiar al portapapeles
-          navigator.clipboard.writeText(linksText)
-              .then(() => {
-                  // alert('Links copiados al portapapeles');
-              })
-              .catch((error) => {
-                  console.error('Error al copiar al portapapeles:', error);
-                  alert('Error al copiar los links al portapapeles');
-              });
+        console.log('antes del fetch...')
+        const response = await fetch('/api/funciones/listarurlsarray');
+        console.log('despues del fetch...')
+        if (!response.ok) {
+          throw new Error('Error al obtener los links');
+        }
+        console.log('despues del if...')
+        const links = await response.json();
+        const linksText = links.join('\n'); // Opcional: puedes ajustar el separador según cómo los devuelvas
+        // Copiar al portapapeles
+        navigator.clipboard.writeText(linksText)
+          .then(() => {
+              // alert('Links copiados al portapapeles');
+          })
+          .catch((error) => {
+            console.error('Error al copiar al portapapeles:', error);
+            alert('Error al copiar los links al portapapeles');
+          });
       } catch (error) {
-          console.error('Error:', error);
-          alert('Error al obtener los links');
+        console.error('Error:', error);
+        alert('Error al obtener los links');
       }
   });
 
