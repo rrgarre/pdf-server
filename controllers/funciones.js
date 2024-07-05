@@ -41,7 +41,7 @@ funcionesRouter.get('/listarurls', async (req, res) => {
   try {
     const files = await fs.readdir('pdfs')
     const pdfFiles = files.filter(file => path.extname(file).toLowerCase() === '.pdf')
-    const pdfFilesUrls = pdfFiles.map(file => 'http://35.180.142.222:3007/api/funciones/documentos/' + file)
+    const pdfFilesUrls = pdfFiles.map(file => 'https://primalum.cubiseo.es:3007/api/funciones/documentos/' + file)
     // res.json(pdfFilesUrls)
     res.send(pdfFilesUrls.join("<br>"))
   } catch (error) {
@@ -54,7 +54,7 @@ funcionesRouter.get('/listarurlsarray', async (req, res) => {
   try {
     const files = await fs.readdir('pdfs')
     const pdfFiles = files.filter(file => path.extname(file).toLowerCase() === '.pdf')
-    const pdfFilesUrls = pdfFiles.map(file => 'http://35.180.142.222:3007/api/funciones/documentos/' + file)
+    const pdfFilesUrls = pdfFiles.map(file => 'https://primalum.cubiseo.es:3007/api/funciones/documentos/' + file)
     res.json(pdfFilesUrls)
   } catch (error) {
     console.error(error)

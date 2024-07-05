@@ -111,16 +111,16 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('antes del fetch...')
         const response = await fetch('/api/funciones/listarurlsarray');
         console.log('despues del fetch...')
-        // if (!response.ok) {
-        //   throw new Error('Error al obtener los links');
-        // }
+        if (!response.ok) {
+          throw new Error('Error al obtener los links');
+        }
         console.log('despues del if...')
         const links = await response.json();
         const linksText = links.join('\n'); // Opcional: puedes ajustar el separador según cómo los devuelvas
         // Copiar al portapapeles
         navigator.clipboard.writeText(linksText)
           .then(() => {
-              // alert('Links copiados al portapapeles');
+              alert('Links copiados al portapapeles');
           })
           .catch((error) => {
             console.error('Error al copiar al portapapeles:', error);
