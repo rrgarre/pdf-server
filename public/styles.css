@@ -1,24 +1,32 @@
 body {
   font-family: Arial, sans-serif;
-  padding: 20px;
+  padding: 0px;
+  margin:0px !important;
 }
 
 h1, h2 {
   color: #333;
 }
 
+h1 {
+  font-size: 28px
+}
+
+
+h2 {
+  text-align: center;
+  color: #00457c !important;
+}
+
 form, ul {
   margin-top: 20px;
 }
 
-button {
-  margin-left: 10px;
-}
 
 .drop-zone {
-  border: 2px dashed #ccc;
+  border: 3px dashed #ccc;
   border-radius: 10px;
-  padding: 20px;
+  padding: 80px;
   text-align: center;
   color: #aaa;
   margin-top: 20px;
@@ -27,14 +35,16 @@ button {
 
 .drop-zone.dragover {
   border-color: #333;
-  color: #333;
+  color: ##aaa;
 }
 
 .cabecera {
   display: flex;
   flex-direction: row;
-  margin-bottom: 6em;
-  margin: 0 10% 5% 10%;
+  margin-bottom: 1em;
+  /* margin: 0px 10% 5% 10%; */
+  background-color: white;
+  padding: 14px 6% 3px 6%;
 }
 
 
@@ -58,23 +68,79 @@ h2 {
 
 
 .drop-zone {
-  border: 2px dashed #ccc;
-  border-radius: 10px;
-  padding: 80px;
-  text-align: center;
-  color: #aaa;
-  margin-top: 20px;
-  cursor: pointer;
   margin-left: 25%;
   margin-right: 25%;
   margin-bottom: 6em;
+  background-color: white;
 }
 
 li {
+  display: flex;
   list-style-type: none;
 }
 
 ul#pdfList {
-  margin: 0 15% 0 15%;
-  text-align: center;
+  margin: 0 20% 0 20%;
+  padding: 20px 40px 0px 40px;
+  border: 1px solid #b8b8b8;
+  border-radius: 5px;
 }
+
+.file-name {
+  display: flex;
+  width: 90%;
+  align-items: center;
+  padding-left: 10px;
+  font-family: monospace;
+  font-size: 14px;
+}
+
+.button-view, .button-delete {
+  width: 5%;
+  border: none;
+  background-color: unset;
+  color: #00457c;
+}
+
+
+
+li:nth-child(odd) {
+  background-color: #a8bfd275;
+}
+
+
+.material-symbols-outlined {
+  padding-top: 4px;
+}
+
+.div-copy {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: -75px 0 80px 0;
+}
+
+
+button#copyLinksButton, #uploadForm > button {
+  padding: 8px 30px 6px 30px;
+  border: 3px solid #00457c;
+  background: none;
+  color: #00457c;
+  font-size: 16px;
+  font-family: arial;
+  font-weight: bolder;
+  border-radius: 2px;
+}
+
+button#copyLinksButton {
+  color: white;
+  background-color: #00457c;
+  border: 3px solid #00457c;
+}
+
+/*sección subir*/
+body > section:nth-child(2) {
+  background-color: #F3F4F6;
+  padding: 30px 0 30px 0px;
+}
+
